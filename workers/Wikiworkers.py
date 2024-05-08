@@ -12,6 +12,7 @@ class Wikiworker():
         table_rows = table.find_all('tr')
         for table_row in table_rows[1:]:  
             symbol = table_row.find('td').text.strip()  
+            symbol = symbol.replace('.', '-')
             yield symbol
 
     def get_sp_500_companies(self):
