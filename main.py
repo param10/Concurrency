@@ -1,6 +1,7 @@
 import time
 from workers.Wikiworkers import Wikiworker
 from workers.YahooFInanceWorker import YahooFinancePriceWorker
+from multiprocessing import Queue
 
 
 def main():

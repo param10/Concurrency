@@ -6,7 +6,6 @@ class YahooFinancePriceWorker(threading.Thread):
     def __init__(self,symbol, **kwargs):
         super(YahooFinancePriceWorker, self).__init__(**kwargs)
         self._symbol = symbol
-        self_url = f"https://www.alphavantage.co/query?function=TIME_SERIES_INTRADAY&symbol={symbol}&interval=5min&apikey=F4W8MV5EP14PMZ9S"
         self.start()
 
 
