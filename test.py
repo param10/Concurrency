@@ -1,7 +1,7 @@
 from sqlalchemy import create_engine, text
 
 # Explicitly start and commit transactions
-engine = create_engine('postgresql://postgres:crack123@localhost:5432/postgres', echo=True, future=True)
+engine = create_engine('postgresql://postgres:"Password"@localhost:5432/postgres', echo=True, future=True)
 
 with engine.connect() as conn:
     transaction = conn.begin()

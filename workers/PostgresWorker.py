@@ -29,7 +29,7 @@ class Postgres:
         self._symbol = symbol
         self._price = price
         self._extracted_time = extracted_time
-        self._engine = create_engine('postgresql://postgres:crack123@localhost:5432/postgres')
+        self._engine = create_engine('postgresql://postgres:"Password"@localhost:5432/postgres')
 
     # rest of the class remains the same
 
