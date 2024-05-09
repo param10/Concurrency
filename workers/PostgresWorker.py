@@ -50,3 +50,7 @@ class Postgres:
                 'price': self._price,
                 'insert_time': self._extracted_time  
             })
+            conn.commit()  
+
+
+
