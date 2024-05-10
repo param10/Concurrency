@@ -2,6 +2,7 @@ import threading
 from sqlalchemy import create_engine
 from sqlalchemy.sql import text
 import os
+from queue import Empty
 
 
 
@@ -14,7 +15,13 @@ class PostgresMasterScheduler(threading.Thread):
 
     def run(self):
         while True:
-            val = self._input_queue.get()
+            try:
+                val = self._input_queue.get(timeout = 10)
+            except Empty:
+                    print("Maximum timeouts reached in Postgres scheduler, stopping")
+                    break
+            
+            
             if val == "DONE":
                 break
 
@@ -29,7 +36,7 @@ class Postgres:
         self._symbol = symbol
         self._price = price
         self._extracted_time = extracted_time
-        self._engine = create_engine('postgresql://postgres:"Password"@localhost:5432/postgres')
+        self._engine = create_engine('postgresql://postgres:crack123@localhost:5432/postgres')
 
     # rest of the class remains the same
 

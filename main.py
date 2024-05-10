@@ -15,7 +15,7 @@ def main():
     num_yahoo_finance_workers = 4
 
     for i in range(num_yahoo_finance_workers):
-        yahooFinancePriceScheduler = YahooFinancePriceScheduler(input_queue=symbol_queue, output_queue=postgres_queue)
+        yahooFinancePriceScheduler = YahooFinancePriceScheduler(input_queue=symbol_queue, output_queue=[postgres_queue])
         yahoo_finance_price_scheduler_thread.append(yahooFinancePriceScheduler)
 
 
@@ -34,6 +34,9 @@ def main():
 
     for thread in range(len(yahoo_finance_price_scheduler_thread)):
         yahoo_finance_price_scheduler_thread[thread].join()
+
+    for thread in range(len(postgres_scheduler_thread)):
+        postgres_scheduler_thread[thread].join()
 
   
 
