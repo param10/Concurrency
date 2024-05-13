@@ -38,10 +38,14 @@ class YamlPipelineExecutor():
                 self.worker[worker_name].append(WorkerClass(**init__params))
 
 
-    def __join_workers(self):passfor worker in self._workers
+    def __join_workers(self):
+        for worker_name in self._workers:
+            for worker_thread in self._workers[worker_name]:
+                worker_thread.join()
 
     def process_pipeline(self):
         self._load_pipeline()
         self._initialize_queues()
         self._initialize_workers()
+        self.__join_workers()
         
